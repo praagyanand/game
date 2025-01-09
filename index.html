@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas Movie Emoji Challenge</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>Guess the Christmas Movie 🎄</h1>
+      <div class="emoji-container" id="emoji-container"></div>
+      <div class="guess-container">
+        <input
+          type="text"
+          id="guess-input"
+          placeholder="Enter movie title"
+          autofocus
+        />
+        <button id="guess-button">Guess</button>
+      </div>
+      <p id="remaining-guesses">Remaining Guesses: 3</p>
+      <p id="feedback"></p>
+      <button id="next-movie-button" style="display: none">Next Movie</button>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
