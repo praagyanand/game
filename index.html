@@ -3,27 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Christmas Movie Emoji Challenge</title>
+    <title>Student Grades Analyzer</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="game-container">
-      <h1>Guess the Christmas Movie 🎄</h1>
-      <div class="emoji-container" id="emoji-container"></div>
-      <div class="guess-container">
-        <input
-          type="text"
-          id="guess-input"
-          placeholder="Enter movie title"
-          autofocus
-        />
-        <button id="guess-button">Guess</button>
-      </div>
-      <p id="remaining-guesses">Remaining Guesses: 3</p>
-      <p id="feedback"></p>
-      <button id="next-movie-button" style="display: none">Next Movie</button>
+    <h1>Student Grades Analyzer</h1>
+
+    <!-- Form to Add a New Student -->
+    <div class="form-group">
+      <label for="student-name">Student Name:</label>
+      <input type="text" id="student-name" placeholder="Enter name" />
     </div>
-    <script src="data.js"></script>
+    <div class="form-group">
+      <label for="student-marks">Marks:</label>
+      <input type="number" id="student-marks" placeholder="Enter marks" />
+    </div>
+    <button onclick="addStudent()">Add Student</button>
+
+    <!-- Table to Display Student List -->
+    <h2>Student List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Marks</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody id="student-table"></tbody>
+    </table>
+
+    <!-- Statistics Section -->
+    <div class="stats">
+      <h3>Statistics</h3>
+      <p><strong>Average Marks:</strong> <span id="average-marks">0</span></p>
+      <p><strong>Top Scorer:</strong> <span id="top-scorer">N/A</span></p>
+      <p>
+        <strong>Failed Students:</strong> <span id="failed-students">0</span>
+      </p>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

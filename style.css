@@ -1,80 +1,49 @@
-* {
-  margin: 0;
+*{
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
-
 body {
-  font-family: "Arial", sans-serif;
-  background-color: #f1f1f1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  line-height: 1.6;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+table, th, td {
+  border: 1px solid #ddd;
+}
+th, td {
+  padding: 10px;
   text-align: center;
 }
-
-.game-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+th {
+  background-color: #f4f4f4;
 }
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.emoji-container {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.guess-container {
-  margin-bottom: 20px;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
+.form-group {
   margin-bottom: 10px;
 }
-
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input {
+  padding: 8px;
+  width: 100%;
+}
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #28a745;
+  padding: 10px 15px;
   color: white;
-  border: none;
-  border-radius: 4px;
-}
-
-button:hover {
-  background-color: #218838;
-}
-
-button:disabled {
-  background-color: #6c757d;
-}
-
-#remaining-guesses {
-  font-size: 18px;
-}
-
-#feedback {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #dc3545;
-}
-
-#next-movie-button {
   background-color: #007bff;
+  border: none;
+  cursor: pointer;
 }
-
-#next-movie-button:hover {
+button:hover {
   background-color: #0056b3;
+}
+.stats {
+  margin: 20px 0;
 }

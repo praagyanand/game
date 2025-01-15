@@ -1,56 +1,62 @@
-let currentMovieIndex = 0;
-let guessesLeft = 3;
-let correctAnswer = false;
+// Initial Student List
+let students = [];
 
-const emojiContainer = document.getElementById("emoji-container");
-const guessInput = document.getElementById("guess-input");
-const guessButton = document.getElementById("guess-button");
-const remainingGuesses = document.getElementById("remaining-guesses");
-const feedback = document.getElementById("feedback");
-const nextMovieButton = document.getElementById("next-movie-button");
+// Function to Add a New Student
+function addStudent() {
+  const name = document.getElementById("student-name").value.trim();
+  const marks = parseInt(document.getElementById("student-marks").value.trim());
 
-function loadMovie() {
-  const movie = movies[currentMovieIndex];
-  emojiContainer.textContent = movie.emoji;
-  emojiContainer.setAttribute("aria-label", movie.ariaLabel);
-  guessesLeft = 3;
-  remainingGuesses.textContent = `Remaining Guesses: ${guessesLeft}`;
-  guessInput.value = "";
-  feedback.textContent = "";
-  correctAnswer = false;
-  guessButton.disabled = false;
-  nextMovieButton.style.display = "none";
-}
-
-function checkGuess() {
-  const guess = guessInput.value.trim().toLowerCase();
-  const correctTitle = movies[currentMovieIndex].title.toLowerCase();
-
-  if (guess === correctTitle) {
-    correctAnswer = true;
-    feedback.textContent = "Correct! 🎉";
-    guessButton.disabled = true;
-    nextMovieButton.style.display = "block";
-  } else {
-    guessesLeft--;
-    if (guessesLeft === 0) {
-      feedback.textContent = `Out of guesses! The correct movie was: ${movies[currentMovieIndex].title}`;
-      guessButton.disabled = true;
-      nextMovieButton.style.display = "block";
-    } else {
-      feedback.textContent = `Incorrect. Try again!`;
-      remainingGuesses.textContent = `Remaining Guesses: ${guessesLeft}`;
-    }
+  if (!name || isNaN(marks)) {
+    alert("Please enter valid student details!");
+    return;
   }
+
+  // Add the new student
+  students.push({ name, marks });
+
+  // Clear input fields
+  document.getElementById("student-name").value = "";
+  document.getElementById("student-marks").value = "";
+
+  // Update UI
+  renderStudentTable();
+  updateStatistics();
 }
 
-function nextMovie() {
-  currentMovieIndex = (currentMovieIndex + 1) % movies.length;
-  loadMovie();
+// Function to Render the Student Table
+function renderStudentTable() {
+  const tableBody = document.getElementById("student-table");
+  tableBody.innerHTML = "";
+
+  students.forEach((student) => {
+    const grade = student.marks >= 40 ? "Pass" : "Fail";
+    const row = `
+      <tr>
+        <td>${student.name}</td>
+        <td>${student.marks}</td>
+        <td>${grade}</td>
+      </tr>
+    `;
+    tableBody.innerHTML += row;
+  });
 }
 
-guessButton.addEventListener("click", checkGuess);
-nextMovieButton.addEventListener("click", nextMovie);
+// Function to Update Statistics
+function updateStatistics() {
+  // Average Marks
+  const totalMarks = students.reduce((sum, student) => sum + student.marks, 0);
+  const averageMarks = students.length ? (totalMarks / students.length).toFixed(2) : 0;
 
-// Initial movie load
-loadMovie();
+  // Top Scorer
+  const topScorer = students.reduce((highest, student) => {
+    return student.marks > (highest.marks || 0) ? student : highest;
+  }, {});
+
+  // Failed Students
+  const failedStudents = students.filter((student) => student.marks < 40).length;
+
+  // Update DOM
+  document.getElementById("average-marks").textContent = averageMarks;
+  document.getElementById("top-scorer").textContent = topScorer.name || "N/A";
+  document.getElementById("failed-students").textContent = failedStudents;
+}
